@@ -568,13 +568,35 @@ function VerbsSection() {
   const [selectedVerb, setSelectedVerb] = useState("ser")
 
   const verbs: Record<string, Record<string, string>> = {
-  	ser: { yo: "soy", tú: "eres", él: "es", nosotros: "somos", vosotros: "sois", ellos: "son" },
-  	estar: { yo: "estoy", tú: "estás", él: "está", nosotros: "estamos", vosotros: "estáis", ellos: "están" },
-  	tener: { yo: "tengo", tú: "tienes", él: "tiene", nosotros: "tenemos", vosotros: "tenéis", ellos: "tienen" },
-  	ir: { yo: "voy", tú: "vas", él: "va", nosotros: "vamos", vosotros: "vais", ellos: "van" },
-  	hablar: { yo: "hablo", tú: "hablas", él: "habla", nosotros: "hablamos", vosotros: "habláis", ellos: "hablan" },
-  	comer: { yo: "como", tú: "comes", él: "come", nosotros: "comemos", vosotros: "coméis", ellos: "comen" },
-  }
+  	
+    "ser": { "yo": "soy", "tú": "eres", "él": "es", "nosotros": "somos", "vosotros": "sois", "ellos": "son" },
+    "estar": { "yo": "estoy", "tú": "estás", "él": "está", "nosotros": "estamos", "vosotros": "estáis", "ellos": "están" },
+    "tener": { "yo": "tengo", "tú": "tienes", "él": "tiene", "nosotros": "tenemos", "vosotros": "tenéis", "ellos": "tienen" },
+    "ir": { "yo": "voy", "tú": "vas", "él": "va", "nosotros": "vamos", "vosotros": "vais", "ellos": "van" },
+    "hablar": { "yo": "hablo", "tú": "hablas", "él": "habla", "nosotros": "hablamos", "vosotros": "habláis", "ellos": "hablan" },
+    "comer": { "yo": "como", "tú": "comes", "él": "come", "nosotros": "comemos", "vosotros": "coméis", "ellos": "comen" },
+    "poder": { "yo": "puedo", "tú": "puedes", "él": "puede", "nosotros": "podemos", "vosotros": "podéis", "ellos": "pueden" },
+    "seguir": { "yo": "sigo", "tú": "sigues", "él": "sigue", "nosotros": "seguimos", "vosotros": "seguís", "ellos": "siguen" },
+    "ver": { "yo": "veo", "tú": "ves", "él": "ve", "nosotros": "vemos", "vosotros": "veis", "ellos": "ven" },
+    "querer": { "yo": "quiero", "tú": "quieres", "él": "quiere", "nosotros": "queremos", "vosotros": "queréis", "ellos": "quieren" },
+    "poner": { "yo": "pongo", "tú": "pones", "él": "pone", "nosotros": "ponemos", "vosotros": "ponéis", "ellos": "ponen" },
+    "pedir": { "yo": "pido", "tú": "pides", "él": "pide", "nosotros": "pedimos", "vosotros": "pedís", "ellos": "piden" },
+    "dar": { "yo": "doy", "tú": "das", "él": "da", "nosotros": "damos", "vosotros": "dais", "ellos": "dan" },
+    "saber": { "yo": "sé", "tú": "sabes", "él": "sabe", "nosotros": "sabemos", "vosotros": "sabéis", "ellos": "saben" },
+    "venir": { "yo": "vengo", "tú": "vienes", "él": "viene", "nosotros": "venimos", "vosotros": "venís", "ellos": "vienen" },
+    "oír": { "yo": "oigo", "tú": "oyes", "él": "oye", "nosotros": "oímos", "vosotros": "oís", "ellos": "oyen" },
+    "llamarse": { "yo": "me llamo", "tú": "te llamas", "él": "se llama", "nosotros": "nos llamamos", "vosotros": "os llamáis", "ellos": "se llaman" },
+    "bailar": { "yo": "bailo", "tú": "bailas", "él": "baila", "nosotros": "bailamos", "vosotros": "bailáis", "ellos": "bailan" },
+    "hacer": { "yo": "hago", "tú": "haces", "él": "hace", "nosotros": "hacemos", "vosotros": "hacéis", "ellos": "hacen" },
+    "viajar": { "yo": "viajo", "tú": "viajas", "él": "viaja", "nosotros": "viajamos", "vosotros": "viajáis", "ellos": "viajan" },
+    "cantar": { "yo": "canto", "tú": "cantas", "él": "canta", "nosotros": "cantamos", "vosotros": "cantáis", "ellos": "cantan" },
+    "decir": { "yo": "digo", "tú": "dices", "él": "dice", "nosotros": "decimos", "vosotros": "decís", "ellos": "dicen" },
+    "estudiar": { "yo": "estudio", "tú": "estudias", "él": "estudia", "nosotros": "estudiamos", "vosotros": "estudiáis", "ellos": "estudian" },
+    "leer": { "yo": "leo", "tú": "lees", "él": "lee", "nosotros": "leemos", "vosotros": "leéis", "ellos": "leen" },
+    "describir": { "yo": "describo", "tú": "describes", "él": "describe", "nosotros": "describimos", "vosotros": "describís", "ellos": "describen" },
+    "gustar": { "yo": "gusto", "tú": "gustas", "él": "gusta", "nosotros": "gustamos", "vosotros": "gustáis", "ellos": "gustan" },
+    "creer": { "yo": "creo", "tú": "crees", "él": "cree", "nosotros": "creemos", "vosotros": "creéis", "ellos": "creen" }
+}
 
   const pronouns = [
   	{ spanish: "Yo", conjugation: "yo" }, { spanish: "Tú", conjugation: "tú" },
@@ -751,28 +773,58 @@ function NationalitiesSection() {
 }
 
 function TimeSection() {
-  const [currentTime, setCurrentTime] = useState({ hour: 0, minute: 0 })
-  const [userAnswer, setUserAnswer] = useState("")
-  const [feedback, setFeedback] = useState("")
-  const [feedbackColor, setFeedbackColor] = useState("")
-  const [correctAnswer, setCorrectAnswer] = useState("")
+  const [currentTime, setCurrentTime] = useState({ hour: 0, minute: 0 });
+  const [userAnswer, setUserAnswer] = useState("");
+  const [feedback, setFeedback] = useState("");
+  const [feedbackColor, setFeedbackColor] = useState("");
+  const [correctAnswer, setCorrectAnswer] = useState("");
 
-  const numberToWord: { [key: number]: string } = {1: "una", 2: "dos", 3: "tres", 4: "cuatro", 5: "cinco", 6: "seis", 7: "siete", 8: "ocho", 9: "nueve", 10: "diez", 11: "once", 12: "doce", 13: "trece", 14: "catorce", 15: "quince", 20: "veinte", 25: "veinticinco" };
+  // This list now has all numbers from 1 to 59.
+  // I changed "una" to "uno" because for minutes we say "y uno".
+  // The special case for "es la una" is already handled in the function below.
+  const numberToWord: { [key: number]: string } = {
+    1: "uno", 2: "dos", 3: "tres", 4: "cuatro", 5: "cinco", 6: "seis", 7: "siete", 8: "ocho", 9: "nueve", 10: "diez",
+    11: "once", 12: "doce", 13: "trece", 14: "catorce", 15: "quince", 16: "dieciséis", 17: "diecisiete", 18: "dieciocho", 19: "diecinueve", 20: "veinte",
+    21: "veintiuno", 22: "veintidós", 23: "veintitrés", 24: "veinticuatro", 25: "veinticinco", 26: "veintiséis", 27: "veintisiete", 28: "veintiocho", 29: "veintinueve", 30: "treinta",
+    31: "treinta y uno", 32: "treinta y dos", 33: "treinta y tres", 34: "treinta y cuatro", 35: "treinta y cinco", 36: "treinta y seis", 37: "treinta y siete", 38: "treinta y ocho", 39: "treinta y nueve",
+    40: "cuarenta", 41: "cuarenta y uno", 42: "cuarenta y dos", 43: "cuarenta y tres", 44: "cuarenta y cuatro", 45: "cuarenta y cinco", 46: "cuarenta y seis", 47: "cuarenta y siete", 48: "cuarenta y ocho", 49: "cuarenta y nueve",
+    50: "cincuenta", 51: "cincuenta y uno", 52: "cincuenta y dos", 53: "cincuenta y tres", 54: "cincuenta y cuatro", 55: "cincuenta y cinco", 56: "cincuenta y seis", 57: "cincuenta y siete", 58: "cincuenta y ocho", 59: "cincuenta y nueve"
+  };
 
   const getSpanishTime = (hour: number, minute: number): string => {
     let displayHour = hour % 12;
     if (displayHour === 0) displayHour = 12;
 
+    // No changes needed here
     if (minute === 0) return displayHour === 1 ? "es la una en punto" : `son las ${numberToWord[displayHour]} en punto`;
     if (minute === 15) return displayHour === 1 ? "es la una y cuarto" : `son las ${numberToWord[displayHour]} y cuarto`;
     if (minute === 30) return displayHour === 1 ? "es la una y media" : `son las ${numberToWord[displayHour]} y media`;
-    if (minute < 30) return displayHour === 1 ? `es la una y ${minute}` : `son las ${numberToWord[displayHour]} y ${minute}`;
     
-    const nextHour = (displayHour % 12) + 1;
+    // FIX: Use numberToWord for minutes less than 30
+    if (minute < 30) {
+        // We use || minute to show the number if the word is not in the list
+        const minuteWord = numberToWord[minute] || minute;
+        const hourWord = numberToWord[displayHour] || displayHour;
+        return displayHour === 1 ? `es la una y ${minuteWord}` : `son las ${hourWord} y ${minuteWord}`;
+    }
+    
+    // Logic for minutes after 30
+    const nextHourRaw = (hour % 12) + 1;
+    const nextHour = nextHourRaw > 12 ? 1 : nextHourRaw; // handle wrapping from 12 to 1
     const minutesLeft = 60 - minute;
-    if (minutesLeft === 15) return nextHour === 1 ? "es la una menos cuarto" : `son las ${numberToWord[nextHour] || nextHour} menos cuarto`;
-    return nextHour === 1 ? `es la una menos ${minutesLeft}` : `son las ${numberToWord[nextHour] || nextHour} menos ${minutesLeft}`;
+    
+    const nextHourWord = numberToWord[nextHour] || nextHour;
+    const minutesLeftWord = numberToWord[minutesLeft] || minutesLeft;
+
+    // No changes needed here
+    if (minutesLeft === 15) return nextHour === 1 ? "es la una menos cuarto" : `son las ${nextHourWord} menos cuarto`;
+    
+    // FIX: Use numberToWord for minutes left
+    return nextHour === 1 ? `es la una menos ${minutesLeftWord}` : `son las ${nextHourWord} menos ${minutesLeftWord}`;
   }
+
+  // ... rest of your component
+}
 
   const newQuestion = () => {
   	const hour = Math.floor(Math.random() * 12) + 1
